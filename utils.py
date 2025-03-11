@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot(history):
     accuracy = history.history["accuracy"]
@@ -18,4 +19,16 @@ def plot(history):
     plt.plot(epochs, val_loss, "r-o", label="Validation loss")
     plt.title("Training and validation loss")
     plt.legend()
+    plt.show()
+
+def plot_label_distribution(y, title):
+    labels, counts = np.unique(y, return_counts=True)
+    labels = labels.astype(int)  # Ensure labels are integers
+
+    plt.figure(figsize=(10, 5))
+    plt.bar(labels, counts, align='center', alpha=0.7)
+    plt.xlabel('Labels')
+    plt.ylabel('Counts')
+    plt.title(title)
+    plt.xticks(labels)  # Ensure x-axis shows integer labels
     plt.show()
